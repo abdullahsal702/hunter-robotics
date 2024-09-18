@@ -1,4 +1,13 @@
 <launch>
     <include file="$(find turtlesim_helper)/launch/turtlesim.launch" />
+    
     <node pkg="learning_ros" type="turtlesquare_node.py" name="turtlesquare_node" output="screen"/>
+
+    <node pkg="learning_ros" type="turtledistance_node.py" name="distance_calculator" output="screen" />
+
+
+    <node pkg="rqt_graph" type="rqt_graph" name="rqt_graph" output="screen" />
+
+
+    <node pkg="rostopic" type="rostopic" name="distance_logs" output="screen" args="echo /turtle/distance" />
 </launch>
