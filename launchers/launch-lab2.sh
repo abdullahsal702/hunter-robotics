@@ -1,7 +1,7 @@
 #!/bin/bash
 
 LAB_PACKAGE="learning_ros"
-LAB_LAUNCH="lab2.launch"
+LAB_LAUNCH="turtlesquare.launch"
 
 source /environment.sh
 
