@@ -9,7 +9,7 @@ class Drawer:
 		self.pub = rospy.Publisher('/turtlesim/turtle1/cmd_vel', Twist, queue_size=10)
 
 	def draw_square(self):
-		for i in range(4):
+		for i in range(5):
 			straight_cmd = Twist()
 			straight_cmd.linear.x = 3.0
 			straight_cmd.angular.z = 0
