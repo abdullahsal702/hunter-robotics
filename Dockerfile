@@ -7,7 +7,7 @@ ARG ICON="cube"
 
 # ==================================================>
 # ==> Do not change the code below this line
-ARG ARCH=arm32v7
+ARG ARCH=amd64
 ARG DISTRO=daffy
 ARG BASE_TAG=${DISTRO}-${ARCH}
 ARG BASE_IMAGE=dt-core
@@ -31,7 +31,7 @@ ARG LAUNCHER
 RUN dt-build-env-check "${REPO_NAME}" "${MAINTAINER}" "${DESCRIPTION}"
 
 # define/create repository path
-ARG COURSE_PATH="${CATKIN_WS_DIR}/src/eece5560"
+ARG COURSE_PATH="${CATKIN_WS_DIR}/src/${REPO_NAME}"
 ARG REPO_PATH="${CATKIN_WS_DIR}/src/${REPO_NAME}"
 ARG LAUNCH_PATH="${LAUNCH_DIR}/${REPO_NAME}"
 RUN mkdir -p "${REPO_PATH}"
@@ -57,7 +57,7 @@ RUN pip3 install -r ${REPO_PATH}/dependencies-py3.txt
 
 # copy the source code
 COPY ./packages "${REPO_PATH}/packages"
-COPY ./eece5560/. "${REPO_PATH}/eece5560"
+COPY ./csci39536/. "${REPO_PATH}/csci39536"
 
 # build packages
 RUN . /opt/ros/${ROS_DISTRO}/setup.sh && \
