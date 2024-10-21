@@ -1,13 +1,17 @@
 <launch>
-    <include file="$(find turtlesim_helper)/launch/turtlesim.launch" />
-    
-    <node pkg="learning_ros" type="turtlesquare_node.py" name="turtlesquare_node" output="screen"/>
+	<include file="$(find turtlesim_helper)/launch/turtlesim.launch" />
 
-    <node pkg="learning_ros" type="turtledistance_node.py" name="distance_calculator" output="screen" />
+	<node pkg="learning_ros" type="turtlesquare_node.py" name="turtlesquare_node" output="screen"/>
+
+	<node pkg="learning_ros" type="turtledistance_node.py" name="distance_calculator" output="screen" />
+
+	<param name="units" value="smoots"/>
+	<node pkg="learning_ros" type="turtleconversion_node.py" name="distance_converter" output="screen" />
+
+	<node pkg="learning_ros" type="set_param_node.py" name="param_setter" output="screen" />
+
+	<node pkg="rqt_graph" type="rqt_graph" name="rqt_graph" output="screen" />
 
 
-    <node pkg="rqt_graph" type="rqt_graph" name="rqt_graph" output="screen" />
-
-
-    <node pkg="rostopic" type="rostopic" name="distance_logs" output="screen" args="echo /turtle/distance" />
+	<node pkg="rostopic" type="rostopic" name="converted_distance_echo" args="echo /turtlesim/turtle1/distance_converted" output="screen" />
 </launch>

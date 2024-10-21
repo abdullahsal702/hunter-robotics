@@ -1,0 +1,4 @@
+<launch>
+	<node pkg="lab3_navigation" type="odom_subscriber.py" name="odom_subscriber" output="screen"></node>
+	<node pkg="lab3_navigation" type="move_circle.py" name="move_circle" output="screen"></node>
+</launch>
