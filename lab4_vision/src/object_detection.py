@@ -56,8 +56,8 @@ def camera_cb(img_data):
 		show_and_save_image(cropped_img, img_name = "step2_cropping")
 		
 		hsv_img = cv2.cvtColor(cropped_img, cv2.COLOR_BGR2HSV) 
-		lower_threshold = (50, 200, 100) 
-		upper_threshold = (63, 255, 255) 
+		lower_threshold = (-1, 225, 100) 
+		upper_threshold = (5, 255, 255) 
 		img_mask = cv2.inRange(hsv_img, lower_threshold, upper_threshold) 
 		show_and_save_image(img_mask, img_name = "step3_image_mask")
 		

@@ -59,17 +59,36 @@ class ColourSearch():
         crop_img = cv_img[crop_y:crop_y+crop_height, crop_x:crop_x+crop_width]
         hsv_img = cv2.cvtColor(crop_img, cv2.COLOR_BGR2HSV)
 
-        lower = (115, 224, 100)
-        upper = (130, 255, 255)
-        mask = cv2.inRange(hsv_img, lower, upper)
-        res = cv2.bitwise_and(crop_img, crop_img, mask = mask)
-
-        m = cv2.moments(mask)
+        blue_lower = (115, 224, 100)
+        blue_upper = (130, 255, 255)
+        blue_mask = cv2.inRange(hsv_img, blue_lower, blue_upper)
+        
+        red_lower = (0, 225, 100)
+        red_upper = (5, 255, 255)
+        red_mask = cv2.inRange(hsv_img, red_lower, red_upper)
+        
+        green_lower = (55, 235, 100)
+        green_upper = (62, 255, 255)
+        green_mask = cv2.inRange(hsv_img, green_lower, green_upper)
+        
+        lightblue_lower = (86, 185, 100)
+        lightblue_upper = (92, 255, 255)
+        lightblue_mask = cv2.inRange(hsv_img, lightblue_lower, lightblue_upper)
+        
+        # res = cv2.bitwise_and(crop_img, crop_img, mask = red_mask)
+        blue_m = cv2.moments(blue_mask)
+        red_m = cv2.moments(red_mask)
+        green_m = cv2.moments(green_mask)
+        lightblue_m = cv2.moments(lightblue_mask)
+        moments = [blue_m, red_m, green_m, lightblue_m]
+        
+        # The moment that has the highest value for non-zero pixels should be used
+        m = max(moments, key=lambda moment: moment['m00'])
         self.m00 = m['m00']
         self.cy = m['m10'] / (m['m00'] + 1e-5)
 
         if self.m00 > self.m00_min:
-            cv2.circle(crop_img, (int(self.cy), 200), 10, (0, 0, 255), 2)
+          cv2.circle(crop_img, (int(self.cy), 200), 10, (0, 0, 255), 2)
         
         cv2.imshow('cropped image', crop_img)
         cv2.waitKey(1)
