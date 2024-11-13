@@ -1,0 +1,7 @@
+<launch>
+	<env name="TURTLEBOT3_MODEL" value="waffle" />
+	
+	<include file="$(find tuos_simulations)/launch/coloured_pillars.launch" />
+	<node pkg="lab4_vision" type="colour_search.py" name="colour_search" output="screen"></node>
+
+</launch>

@@ -1,0 +1,7 @@
+<launch>
+	<env name="TURTLEBOT3_MODEL" value="waffle" />
+	
+	<include file="$(find tuos_simulations)/launch/line_following.launch" />
+	<node pkg="lab4_vision" type="line_follower.py" name="line_follower" output="screen"></node>
+
+</launch>
